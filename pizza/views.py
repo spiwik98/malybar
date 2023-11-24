@@ -1,3 +1,7 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    """Strona główna"""
+    kontekst = {'komunikat': 'Witaj w aplikacji Pizza!'}
+    return render(request, 'pizza/index.html', kontekst)
