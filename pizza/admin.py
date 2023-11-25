@@ -6,7 +6,7 @@ from django.db.models.fields import TextField
 
 class SkladnikInline(admin.TabularInline):
     model = models.Skladnik
-    fields = ['nazwa', 'jarski']
+    fields = ['nazwa', 'vege']
     extra = 3
     max_num = 6
 
