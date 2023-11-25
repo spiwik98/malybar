@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 from django.db import models
+from django.contrib.auth.models import User
+autor = models.ForeignKey(User, on_delete=models.CASCADE)
 
 
 class Pizza(models.Model):
@@ -17,6 +19,9 @@ class Pizza(models.Model):
     cena = models.DecimalField(max_digits=5, decimal_places=2)
     data = models.DateField('dodano', auto_now_add=True)
 
+    def __unicode__(self):
+        return u'%s' % (self.nazwa)
+
 
 class Skladnik(models.Model):
     pizza = models.ForeignKey(Pizza,
@@ -28,3 +33,9 @@ class Skladnik(models.Model):
         verbose_name=u"jarski?",
         help_text=u"Zaznacz, jeżeli składnik jest odpowiedni dla"
         u" wegetarian")
+
+    def __unicode__(self):
+        return u'%s' % (self.nazwa)
+
+class Meta:
+    verbose_name_plural = 'pizze'
