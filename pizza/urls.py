@@ -10,3 +10,5 @@ urlpatterns = [
         name='lista'),
 ]
 
+path(r'^dodaj/$', views.PizzaCreate.as_view(), name='dodaj'),
+
