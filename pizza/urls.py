@@ -8,7 +8,7 @@ urlpatterns = [
     path(r'^$', views.index, name='index'),
     path(r'^lista/', login_required(ListView.as_view(model=Pizza)),
         name='lista'),
+    path(r'^dodaj/$', views.PizzaCreate.as_view(), name='dodaj'),
+    path(r'^edytuj/(?P<pk>\d+)/', views.PizzaUpdate.as_view(), name='edytuj'),
 ]
-
-path(r'^dodaj/$', views.PizzaCreate.as_view(), name='dodaj'),
 

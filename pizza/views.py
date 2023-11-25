@@ -7,25 +7,29 @@ from django.urls import reverse_lazy
 from django.http import HttpResponseRedirect
 
 @method_decorator(login_required, 'dispatch')
-class PizzaCreate(CreateView):
-    """Widok dodawania pizzy i skladników."""
+class PizzaUpdate(UpdateView):
+    """Widok aktualizuacji"""
 
     model = models.Pizza
     form_class = forms.PizzaForm
     success_url = reverse_lazy('pizza:lista')  # '/pizza/lista'
 
     def get_context_data(self, **kwargs):
-        context = super(PizzaCreate, self).get_context_data(**kwargs)
+        context = super(PizzaUpdate, self).get_context_data(**kwargs)
         if self.request.POST:
-            context['skladniki'] = forms.SkladnikiFormSet(self.request.POST)
+            context['skladniki'] = forms.SkladnikiFormSet(
+                self.request.POST,
+                instance=self.object)
         else:
-            context['skladniki'] = forms.SkladnikiFormSet()
+            context['skladniki'] = forms.SkladnikiFormSet(instance=self.object)
         return context
 
     def post(self, request, *args, **kwargs):
-        self.object = None
+        self.object = self.get_object()
         form = self.get_form()
-        skladniki = forms.SkladnikiFormSet(self.request.POST)
+        skladniki = forms.SkladnikiFormSet(
+            self.request.POST,
+            instance=self.object)
         if form.is_valid() and skladniki.is_valid():
             return self.form_valid(form, skladniki)
         else:
@@ -34,7 +38,6 @@ class PizzaCreate(CreateView):
     def form_valid(self, form, skladniki):
         form.instance.autor = self.request.user
         self.object = form.save()
-        skladniki.instance = self.object
         skladniki.save()
         return HttpResponseRedirect(self.get_success_url())
 
