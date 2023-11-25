@@ -51,6 +51,10 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+REGISTRATION_AUTO_LOGIN = True  # automatyczne logowanie po rejestracji
+LOGIN_REDIRECT_URL = '/pizza/'  # strona docelowa po zalogowaniu
+LOGIN_URL = '/konta/login/'  # strona logowania
+
 ROOT_URLCONF = 'malybar.urls'
 
 TEMPLATES = [

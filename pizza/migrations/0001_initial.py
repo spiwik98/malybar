@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('nazwa', models.CharField(max_length=30, verbose_name='składnik')),
-                ('jarski', models.BooleanField(default=False, help_text='Zaznacz, jeżeli składnik jest odpowiedni dla wegetarian', verbose_name='jarski?')),
+                ('jarski', models.BooleanField(default=False, help_text='Zaznacz, jeżeli składnik jest odpowiedni dla wegetarian', verbose_name='vege?')),
                 ('pizza', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='skladniki', to='pizza.pizza')),
             ],
         ),

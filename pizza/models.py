@@ -28,9 +28,9 @@ class Skladnik(models.Model):
                               on_delete=models.CASCADE,
                               related_name='skladniki')
     nazwa = models.CharField(verbose_name=u"składnik", max_length=30)
-    jarski = models.BooleanField(
+    vege = models.BooleanField(
         default=False,
-        verbose_name=u"jarski?",
+        verbose_name=u"vege?",
         help_text=u"Zaznacz, jeżeli składnik jest odpowiedni dla"
         u" wegetarian")
 
