@@ -1,3 +1,6 @@
 from django.contrib import admin
+from . import models
 
-# Register your models here.
+# rejestrujemy modele w panelu administracyjnym
+admin.site.register(models.Pizza)
+admin.site.register(models.Skladnik)
